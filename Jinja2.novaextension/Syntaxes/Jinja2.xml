@@ -78,6 +78,7 @@
                     <string>endraw</string>
                     <string>set</string>
                     <string>endset</string>
+                    <string>extends</string>
                     <string>macro</string>
                     <string>endmacro</string>
                     <string>from</string>
