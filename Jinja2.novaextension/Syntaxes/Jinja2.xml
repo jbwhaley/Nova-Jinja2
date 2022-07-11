@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="jinja" subsyntax="true">
+    <meta>
+        <name>jinja</name>
+        <type>markup</type>
+    </meta>
+
+    <indentation>
+        <increase>
+            <expression>^\s*&lt;(([^!/?]|%)(?!.+?([/%]&gt;|&lt;/.+?&gt;))|[%!]--\s*$)</expression>
+        </increase>
+        <decrease>
+            <expression>^\s*(&lt;/[^&gt;]+&gt;|--&gt;|--%&gt;)</expression>
+        </decrease>
+    </indentation>
+
+    <comments>
+        <multiline>
+            <starts-with>
+                <expression>{#</expression>
+            </starts-with>
+            <ends-with>
+                <expression>#}</expression>
+            </ends-with>
+        </multiline>
+    </comments>
+
+    <brackets>
+        <pair open="{" close="}" />
+        <pair open="[" close="]" />
+        <pair open="(" close=")" />
+    </brackets>
+
+    <surrounding-pairs>
+        <pair open="&lt;" close="&gt;" />
+        <pair open="{" close="}" />
+        <pair open="[" close="]" />
+        <pair open="(" close=")" />
+        <pair open="&apos;" close="&apos;" />
+        <pair open="&quot;" close="&quot;" />
+        <pair open="`" close="`" />
+    </surrounding-pairs>
+
+    <scopes>
+        <include syntax="self" collection="keywords" />
+        <include syntax="self" collection="values" />
+        <include syntax="self" collection="identifiers" />
+        <include syntax="self" collection="syntax" />
+        <include syntax="self" collection="definitions" />
+    </scopes>
+    
+    <collections>
+        <!-- Built-in Keywords -->
+        <collection name="keywords">
+            <scope name="jinja.keyword" spell-check="false">
+                <strings prefix="(?&lt;!block|set)\s" suffix="\b" word-boundary="false">
+                    <string>if</string>
+                    <string>endif</string>
+                    <string>unless</string>
+                    <string>endunless</string>
+                    <string>elif</string>
+                    <string>else</string>
+                    <string>case</string>
+                    <string>when</string>
+                    <string>endcase</string>
+                    <string>for</string>
+                    <string>endfor</string>
+                    <string>break</string>
+                    <string>continue</string>
+                    <string>limit</string>
+                    <string>offset</string>
+                    <string>reversed</string>
+                    <string>cycle</string>
+                    <string>tablerow</string>
+                    <string>endtablerow</string>
+                    <string>cols</string>
+                    <string>raw</string>
+                    <string>endraw</string>
+                    <string>set</string>
+                    <string>endset</string>
+                    <string>macro</string>
+                    <string>endmacro</string>
+                    <string>from</string>
+                    <string>import</string>
+                    <string>increment</string>
+                    <string>decrement</string>
+                    <string>include</string>
+                    <string>render</string>
+                    <string>block</string>
+                    <string>endblock</string>
+                    <string>with</string>
+                    <string>endwith</string>
+                    <string>with context</string>
+                    <string>without context</string>
+                    <string>call</string>
+                    <string>endcall</string>
+                    <string>filter</string>
+                    <string>endfilter</string>
+                    <string>is</string>
+                    <string>in</string>
+                    <string>as</string>
+                    <string>not</string>
+                    <string>and</string>
+                    <string>or</string>
+                    <string>blank</string>
+                    <!-- Filters -->
+                    <string>abs</string>
+                    <string>float</string>
+                    <string>lower</string>
+                    <string>round</string>
+                    <string>tojson</string>
+                    <string>attr</string>
+                    <string>forceescape</string>
+                    <string>map</string>
+                    <string>safe</string>
+                    <string>trim</string>
+                    <string>batch</string>
+                    <string>format</string>
+                    <string>max</string>
+                    <string>select</string>
+                    <string>truncate</string>
+                    <string>capitalize</string>
+                    <string>groupby</string>
+                    <string>min</string>
+                    <string>selectattr</string>
+                    <string>unique</string>
+                    <string>center</string>
+                    <string>indent</string>
+                    <string>pprint</string>
+                    <string>slice</string>
+                    <string>upper</string>
+                    <string>default</string>
+                    <string>int</string>
+                    <string>random</string>
+                    <string>sort</string>
+                    <string>urlencode</string>
+                    <string>dictsort</string>
+                    <string>join</string>
+                    <string>reject</string>
+                    <string>string</string>
+                    <string>urlize</string>
+                    <string>escape</string>
+                    <string>last</string>
+                    <string>rejectattr</string>
+                    <string>striptags</string>
+                    <string>wordcount</string>
+                    <string>filesizeformat</string>
+                    <string>length</string>
+                    <string>replace</string>
+                    <string>sum</string>
+                    <string>wordwrap</string>
+                    <string>first</string>
+                    <string>list</string>
+                    <string>reverse</string>
+                    <string>title</string>
+                    <string>xmlattr</string>
+                    <!-- Webassets -->
+                    <string>assets</string>
+                    <string>endassets</string>
+                </strings>
+            </scope>
+        </collection>
+        
+        <!-- Values -->
+        <collection name="values">
+            <scope name="jinja.string.double-quoted">
+                <starts-with>
+                    <expression>&quot;</expression>
+                    <capture number="0" name="jinja.string.double-quoted.delimiter" />
+                </starts-with>
+                <ends-with>
+                    <expression>&quot;|(?:(?&lt;!\\)$)</expression>
+                    <capture number="0" name="jinja.string.double-quoted.delimiter" />
+                </ends-with>
+                <subscopes>
+                    <scope name="jinja.string.double-quoted.escape">
+                        <expression>\\(?:\\|&quot;|n|r|t|b|f)</expression>
+                    </scope>
+                </subscopes>
+            </scope>
+            <scope name="jinja.string.single-quoted">
+                <starts-with>
+                    <expression>&apos;</expression>
+                    <capture number="0" name="jinja.string.single-quoted.delimiter" />
+                </starts-with>
+                <ends-with>
+                    <expression>&apos;|(?:(?&lt;!\\)$)</expression>
+                    <capture number="0" name="jinja.string.single-quoted.delimiter" />
+                </ends-with>
+                <subscopes>
+                    <scope name="jinja.string.single-quoted.escape">
+                        <expression>\\(?:\\|&apos;|n|r|t|b|f)</expression>
+                    </scope>
+                </subscopes>
+            </scope>
+            <scope name="jinja.value.null">
+                <strings>
+                    <string>nil</string>
+                    <string>null</string>
+                    <string>blank</string>
+                </strings>
+            </scope>
+            <scope name="jinja.value.boolean">
+                <strings>
+                    <string>true</string>
+                    <string>false</string>
+                </strings>
+            </scope>
+            <scope name="jinja.value.number">
+                <expression>\b\-?(?:\d+(?:\.\d*)?|(?:\.\d+))\b</expression>
+            </scope>
+        </collection>
+        
+        <!-- Identifiers -->
+        <collection name="identifiers">
+            <!-- Properties in {} -->
+            <scope name="jinja.identifier">
+                <expression>\b([a-zA-Z_][A-Za-zÀ-ÖØ-öø-ÿ0-9_]*)(\s*\:\s*)</expression>
+                <capture number="1" name="jinja.identifier.property" />
+            </scope>
+            <!-- Object.properties -->
+            <scope name="jinja.identifier">
+                <expression>(\s*\.\s*)([a-zA-Z_][A-Za-zÀ-ÖØ-öø-ÿ0-9_]*)(?!\()\b</expression>
+                <capture number="2" name="jinja.identifier.property" />
+            </scope>
+            <!-- Methods -->
+            <scope name="jinja.identifier">
+                <expression>(\s*\.\s*)([a-zA-Z_][A-Za-zÀ-ÖØ-öø-ÿ0-9_]*)(?=\()\b</expression>
+                <capture number="2" name="jinja.identifier.method" />
+            </scope>
+            <!-- Filters -->
+            <scope name="jinja.identifier">
+                <expression>(\s*\|\s*)([a-zA-Z_][A-Za-zÀ-ÖØ-öø-ÿ0-9_]*)\b</expression>
+                <capture number="2" name="jinja.identifier.method" />
+            </scope>
+            <!-- Functions -->
+            <scope name="jinja.identifier.function">
+                <expression>\b(?&lt;!\.)([a-zA-Z_][A-Za-zÀ-ÖØ-öø-ÿ0-9_]*)(?=\()\b</expression>
+            </scope>
+            <!-- Tests -->
+            <scope name="jinja.identifier.function" spell-check="false">
+                <strings prefix="\b" suffix="\b" word-boundary="false">
+                    <string>where</string>
+                    <string>where_exp</string>
+                    <string>find</string>
+                    <string>find_exp</string>
+                    <string>group_by</string>
+                    <string>group_by_exp</string>
+                </strings>
+            </scope>
+            <!-- Regular Identifiers -->
+            <scope name="jinja.identifier">
+                <expression>\b[a-zA-Z_][A-Za-zÀ-ÖØ-öø-ÿ0-9_]*\b</expression>
+            </scope>
+        </collection>
+        
+        <!-- Syntax -->
+        <collection name="syntax">
+            <scope name="jinja.bracket">
+                <expression>[\(\[\{\)\]\}]</expression>
+            </scope>
+            <scope name="jinja.operator">
+                <expression>(\+|\-|\*|\/|\%|\/\/|\*\*|\=|\~|\&amp;|\^|\=\=|\!\=|&lt;|&gt;|&gt;\=|&lt;\=|\.\.|\?|\?\:|\?\?|\:)</expression>
+            </scope>
+            <scope name="jinja.comma">
+                <expression>,</expression>
+            </scope>
+        </collection>
+        
+        <!-- Definitions -->
+        <collection name="definitions">
+            <scope name="jinja.definition.variable">
+                <symbol type="variable" scope="global" />
+                <expression>(?&lt;=set)\s+([a-zA-Z_][A-Za-zÀ-ÖØ-öø-ÿ0-9_]*)\s*(\=)</expression>
+                <capture number="1" name="jinja.identifier.name" />
+                <capture number="2" name="jinja.operator" />
+            </scope>
+            <scope name="jinja.definition.function">
+                <symbol type="function" scope="global">
+                    <context behavior="subtree" foldable="false" />
+                </symbol>
+                <starts-with>
+                    <expression>(?&lt;=macro)\s+([a-zA-Z_][A-Za-zÀ-ÖØ-öø-ÿ0-9_]*)</expression>
+                    <capture number="1" name="jinja.identifier.function.name" />
+                </starts-with>
+                <ends-with>
+                    <expression>(?&lt;=\%\})</expression>
+                </ends-with>
+                <subscopes>
+                    <include syntax="self" collection="arguments" />
+                </subscopes>
+            </scope>
+        </collection>
+        
+        <!-- Arguments (used in definitions) -->
+      <collection name="arguments">
+            <scope name="jinja.arguments">
+                 <starts-with>
+                      <expression>\(</expression>
+                      <capture number="0" name="jinja.bracket" />
+                 </starts-with>
+                 <ends-with>
+                      <expression>\)</expression>
+                      <capture number="0" name="jinja.bracket" />
+                 </ends-with>
+                 <subscopes>
+                      <scope name="jinja.identifier.argument.name">
+                            <symbol type="argument" />
+                            <expression>(?&lt;!\=)\b[a-zA-Z_][A-Za-zÀ-ÖØ-öø-ÿ0-9_]*\b</expression>
+                      </scope>
+                      <include syntax="self" collection="values" />
+                      <include syntax="self" collection="syntax" />
+                 </subscopes>
+            </scope>
+      </collection>
+    </collections>
+</syntax>

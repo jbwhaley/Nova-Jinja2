@@ -1,0 +1,11 @@
+{
+    "identifier": "jgfeatures.Jinja2",
+    "name": "Jinja2",
+    "organization": "J&G Features, LLC",
+    "description": "Syntax highlighting for Jinja2 Templates.",
+    "version": "1.1.0.0",
+    "bugs": "http://jgfeatures.com",
+    "categories": ["languages"],
+    "categories": ["languages", "completions"],
+    "activationEvents": ["onLanguage:liquid", "onLanguage:html"]
+}
