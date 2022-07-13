@@ -12,7 +12,7 @@ Let's get started!
 🎈 Include a brief description of the features your syntax jinja provides. For example:
 -->
 
-**Jinja2** provides syntax highlighting and autocompletion for **Jinja2 Templates**.
+**Jinja2** provides syntax highlighting for **Jinja2 Templates**.
 
 <!--
 🎈 It can also be helpful to include a screenshot or GIF showing your jinja in action:
