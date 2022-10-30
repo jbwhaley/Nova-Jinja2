@@ -3,7 +3,7 @@
     "name": "Jinja2",
     "organization": "J&G Features, LLC",
     "description": "Syntax highlighting for Jinja2 Templates.",
-    "version": "1.1.1.1",
+    "version": "1.2",
     "bugs": "https://github.com/jbwhaley/Nova-Jinja2",
     "categories": ["languages"],
     "categories": ["languages", "completions"],
