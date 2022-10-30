@@ -2,6 +2,6 @@
 
 Initial release
 
-## Version 1.1.0.0
+## Version 1.2
 
 Better language detection
