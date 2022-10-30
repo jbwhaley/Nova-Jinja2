@@ -7,5 +7,5 @@
     "bugs": "https://github.com/jbwhaley/Nova-Jinja2",
     "categories": ["languages"],
     "categories": ["languages", "completions"],
-    "activationEvents": ["onLanguage:liquid", "onLanguage:html"]
+    "activationEvents": ["onLanguage:jinja", "onLanguage:jinja2", "onLanguage:html"]
 }
