@@ -8,6 +8,7 @@
 	</meta>
 
 	<detectors>
+		<extension priority="1.0">jinja2</extension>
 		<extension priority="1.0">jinja</extension>
 		<extension priority="0.2">html</extension>
 		<match-content lines="100" priority="0.9">\{\%</match-content>
