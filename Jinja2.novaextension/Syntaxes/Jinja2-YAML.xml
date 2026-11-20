@@ -8,7 +8,7 @@
 	</meta>
 
 	<detectors>
-		<extension priority="1.0">yml.j2,yaml.j2</extension>
+		<extension priority="1.0">yml,yaml,yml.j2,yaml.j2</extension>
 	</detectors>
 
 	<scopes>
