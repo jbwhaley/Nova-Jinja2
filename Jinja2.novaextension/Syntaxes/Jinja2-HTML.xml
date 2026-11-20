@@ -56,6 +56,10 @@
 		<pair open="`" close="`" />
 	</surrounding-pairs>
 
+	<tree-sitter language="html">
+		<highlights />
+	</tree-sitter>
+
 	<scopes spell-check="true" lookup="dictionary">
 		<scope name="jinja-html.comment.block" spell-check="true">
 			<starts-with>
