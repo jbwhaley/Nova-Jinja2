@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="jinja-yaml">
+	<meta>
+		<name>YAML (Jinja2)</name>
+		<type>markup</type>
+		<preferred-file-extension>yml.j2</preferred-file-extension>
+		<parent>yaml</parent>
+	</meta>
+
+	<detectors>
+		<extension priority="1.0">yml.j2,yaml.j2</extension>
+	</detectors>
+
+	<scopes>
+		<include syntax="yaml" />
+	</scopes>
+
+	<template-scopes>
+		<scope name="jinja-yaml.comment.block" spell-check="false">
+			<starts-with>
+				<expression>\{\#</expression>
+				<capture number="0" name="jinja.comment.block.start" />
+			</starts-with>
+			<ends-with>
+				<expression>\#\}</expression>
+				<capture number="0" name="jinja.comment.block.end" />
+			</ends-with>
+		</scope>
+
+		<scope name="jinja-yaml.tag.framework" spell-check="false" lookup="index">
+			<starts-with>
+				<expression>\{\{</expression>
+				<capture number="0" name="jinja-yaml.tag.framework.variable.start" />
+			</starts-with>
+			<ends-with>
+				<expression>\}\}</expression>
+				<capture number="0" name="jinja-yaml.tag.framework.variable.end" />
+			</ends-with>
+			<subsyntax name="jinja" noncontiguous="true" export-symbols="true">
+				<cut-off>
+					<expression>(?=\}\})</expression>
+				</cut-off>
+			</subsyntax>
+		</scope>
+
+		<scope name="jinja-yaml.tag.framework" spell-check="false" lookup="index">
+			<starts-with>
+				<expression>\{\%</expression>
+				<capture number="0" name="jinja-yaml.tag.framework.expression.start" />
+			</starts-with>
+			<ends-with>
+				<expression>\%\}</expression>
+				<capture number="0" name="jinja-yaml.tag.framework.expression.end" />
+			</ends-with>
+			<subsyntax name="jinja" noncontiguous="true" export-symbols="true">
+				<cut-off>
+					<expression>(?=\%\})</expression>
+				</cut-off>
+			</subsyntax>
+		</scope>
+	</template-scopes>
+</syntax>
